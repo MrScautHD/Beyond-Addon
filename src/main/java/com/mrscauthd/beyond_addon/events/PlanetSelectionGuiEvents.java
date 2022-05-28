@@ -59,7 +59,7 @@ public class PlanetSelectionGuiEvents {
         screen.visibleButton(backButton, PlanetSelectionGuiHelper.categoryRange(category.get(), 1, 2));
 
         screen.visibleButton(solarSystemButton, screen.category.get() == 0);
-        screen.visibleButton(planetCategoryButton, screen.category.get() == 1);
+        screen.visibleButton(planetCategoryButton, category.get() == 1);
         screen.visibleButton(planetHandlerButton, category.get() == 2);
         screen.visibleButton(planetOrbitHandlerButton, category.get() == 2);
         screen.visibleButton(planetSpaceStationHandlerButton, category.get() == 2);
