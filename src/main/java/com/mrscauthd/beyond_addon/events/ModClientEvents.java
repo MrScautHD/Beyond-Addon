@@ -22,11 +22,11 @@ public class ModClientEvents {
         Level level = Minecraft.getInstance().level;
 
         if (level.dimension() == PlanetsRegistry.PLANET) {
-            event.setPlanetTexture(PLANET_BAR_TEXTURE);
+            event.setResourceLocation(PLANET_BAR_TEXTURE);
         }
 
         if (level.dimension() == PlanetsRegistry.ORBIT) {
-            event.setPlanetTexture(ORBIT_PLANET_BAR_TEXTURE);
+            event.setResourceLocation(ORBIT_PLANET_BAR_TEXTURE);
         }
     }
 }
