@@ -29,11 +29,6 @@ public class ModEvents {
         if (Methods.isWorld(event.getEntityLiving().level, PlanetsRegistry.PLANET)) {
             EntityGravity.gravitySystem(event.getEntityLiving(), 0.03F);
         }
-
-        /** ORBIT GRAVITY */
-        if (Methods.isWorld(event.getEntityLiving().level, PlanetsRegistry.ORBIT)) {
-            EntityGravity.gravitySystem(event.getEntityLiving(), 0.02F);
-        }
     }
 
     @SubscribeEvent
@@ -43,10 +38,6 @@ public class ModEvents {
 
         /** ITEM ENTITY GRAVITY SYSTEM */
         if (Methods.isWorld(level, PlanetsRegistry.PLANET)) {
-            ItemGravity.gravitySystem(entity, 0.05F);
-        }
-
-        if (Methods.isWorld(level, PlanetsRegistry.ORBIT)) {
             ItemGravity.gravitySystem(entity, 0.05F);
         }
     }
@@ -59,34 +50,18 @@ public class ModEvents {
         if (Methods.isWorld(level, PlanetsRegistry.PLANET)) {
             event.setDistance(event.getDistance() - 5.5F);
         }
-
-        if (Methods.isWorld(level, PlanetsRegistry.ORBIT)) {
-            event.setDistance(event.getDistance() - 8.5F);
-        }
     }
 
     @SubscribeEvent
-    public static void planetWeatherSystem(TickEvent.WorldTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            Level level = event.world;
-
-            if (Methods.isWorld(level, PlanetsRegistry.PLANET) || Methods.isWorld(level, PlanetsRegistry.ORBIT)) {
-                level.thunderLevel = 0;
-                level.rainLevel = 0;
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void landerFallToPlanet(TickEvent.PlayerTickEvent event) {
+    public static void landerTeleport(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
-            Level world = player.level;
+            Level level = player.level;
 
             /** LANDER ORBIT TELEPORT SYSTEM */
             if (player.getVehicle() instanceof LanderEntity) {
 
-                if (Methods.isWorld(world, PlanetsRegistry.ORBIT)) {
+                if (Methods.isWorld(level, PlanetsRegistry.ORBIT)) {
                     Methods.landerTeleport(player, PlanetsRegistry.PLANET);
                 }
             }
