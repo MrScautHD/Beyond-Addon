@@ -13,5 +13,5 @@
   "infiniburn": "#minecraft:infiniburn_overworld",
   "min_y": 0,
   "height": 384,
-  "effects": "beyond_addon:planet"
+  "effects": "beyond_earth:moon"
 }
