@@ -14,7 +14,7 @@ import net.mrscauthd.beyond_earth.events.forge.PlanetOverlayEvent;
 @Mod.EventBusSubscriber(modid = BeyondAddonMod.MODID, value = Dist.CLIENT)
 public class ModClientEvents {
 
-    private static final ResourceLocation PLANET_BAR_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/planet_bar/venus_planet_bar.png");
+    private static final ResourceLocation PLANET_BAR_TEXTURE = new ResourceLocation(BeyondEarthMod.MODID, "textures/planet_bar/moon_planet_bar.png");
 
     @SubscribeEvent
     public static void overlayChange(PlanetOverlayEvent event) {
