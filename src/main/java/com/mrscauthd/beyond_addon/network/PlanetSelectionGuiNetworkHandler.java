@@ -40,23 +40,25 @@ public class PlanetSelectionGuiNetworkHandler extends PlanetSelectionGuiNetworkH
         NetworkEvent.Context context = contextSupplier.get();
         ServerPlayer player = context.getSender();
 
-        /** Teleport Planet Button */
-        if (message.getInteger() == 1) {
-            message.defaultOptions(player);
-            Methods.teleportButton(player, PlanetsRegistry.PLANET, false);
-        }
+        switch (message.getInteger()) {
+            /** Teleport Planet Button */
+            case 0:
+                message.defaultOptions(player);
+                Methods.teleportButton(player, PlanetsRegistry.PLANET, false);
+                break;
 
-        /** Teleport Orbit Button */
-        if (message.getInteger() == 2) {
-            message.defaultOptions(player);
-            Methods.teleportButton(player, PlanetsRegistry.ORBIT, false);
-        }
+            /** Teleport Orbit Button */
+            case 1:
+                message.defaultOptions(player);
+                Methods.teleportButton(player, PlanetsRegistry.ORBIT, false);
+                break;
 
-        /** Teleport Space Station Button */
-        if (message.getInteger() == 3) {
-            message.defaultOptions(player);
-            message.deleteItems(player);
-            Methods.teleportButton(player, PlanetsRegistry.ORBIT, true);
+            /** Teleport Space Station Button */
+            case 2:
+                message.defaultOptions(player);
+                message.deleteItems(player);
+                Methods.teleportButton(player, PlanetsRegistry.ORBIT, true);
+                break;
         }
 
         context.setPacketHandled(true);
