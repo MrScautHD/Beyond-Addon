@@ -143,9 +143,6 @@ public class PlanetSelectionGuiEvents {
         /** PLANET SPACE STATION TELEPORT BUTTONS */
         planetSpaceStationHandlerButton = PlanetSelectionGuiHelper.addHandlerButton(screen, 125, 3, 75, 20, screen.spaceStationItemList, BeyondAddonMod.PACKET_HANDLER, getNetworkHandler(2), ImageButtonPlacer.Types.PLANET_SPACE_STATION_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.LARGE_RED_BUTTON_TEXTURE, screen.LARGE_RED_LIGHT_BUTTON_TEXTURE, screen.SPACE_STATION_TEXT);
         screen.visibleButton(planetSpaceStationHandlerButton, false);
-
-        /** UPDATE BUTTON VISIBILITY */
-        screen.updateButtonVisibility();
     }
 
     /** GET NETWORK HANDLER */
