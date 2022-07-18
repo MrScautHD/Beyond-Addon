@@ -1,81 +1,71 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-
 plugins {
-    id 'eclipse'
-    id 'maven-publish'
+    id "eclipse"
+    id "maven-publish"
+    id "net.minecraftforge.gradle" version "5.1+"
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-
-version = '1.0'
-group = 'com.yourname.modid'
-archivesBaseName = 'modid'
+version = "1.19-1.0"
+group = "net.mrscauthd.bey"
+archivesBaseName = "Beyond-Addon"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
 
-    mappings channel: 'official', version: '1.18.2'
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
+    mappings channel: "official", version: "1.19"
 
     runs {
         client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            workingDirectory project.file("run")
+            property 'mixin.env.disableRefMap', 'true'
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "beyond_addon"
+
             mods {
-                examplemod {
+                beyond_addon {
                     source sourceSets.main
                 }
             }
         }
 
         server {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            property 'forge.logging.console.level', 'debug'
-
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            workingDirectory project.file("run")
+            property 'mixin.env.disableRefMap', 'true'
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "beyond_addon"
 
             mods {
-                examplemod {
+                beyond_addon {
                     source sourceSets.main
                 }
             }
         }
 
         gameTestServer {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            workingDirectory project.file("run")
+            property 'mixin.env.disableRefMap', 'true'
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            property "forge.enabledGameTestNamespaces", "beyond_addon"
+
             mods {
-                examplemod {
+                beyond_addon {
                     source sourceSets.main
                 }
             }
         }
 
         data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            workingDirectory project.file("run")
+            property 'mixin.env.disableRefMap', 'true'
+            property "forge.logging.markers", "REGISTRIES"
+            property "forge.logging.console.level", "debug"
+            args "--mod", "beyond_addon", "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources/")
+
             mods {
-                examplemod {
+                beyond_addon {
                     source sourceSets.main
                 }
             }
@@ -83,8 +73,13 @@ minecraft {
     }
 }
 
-//Beyond Earth API:
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
 repositories {
+    /*maven {
+        url "https://cursemaven.com"
+    }*/
+
     maven {
         name "Local"
         url uri("${projectDir}/libs")
@@ -92,26 +87,26 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.25'
-    //Beyond Earth API:
-    implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.2-6.2")
+    minecraft "net.minecraftforge:forge:1.19-41.0.100"
+    //implementation fg.deobf("curse.maven:377448:VERSIONID")
+    implementation fg.deobf("net.mrscauthd:beyond_earth:1.19-6.3")
 }
 
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "examplemod",
-                "Specification-Vendor"    : "examplemodsareus",
+                "Specification-Title"     : "beyond_addon",
+                "Specification-Vendor"    : "MrScautHD",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "examplemodsareus",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "MrScautHD",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
         ])
     }
 }
 
-jar.finalizedBy('reobfJar')
+jar.finalizedBy("reobfJar")
 
 publishing {
     publications {
@@ -127,5 +122,5 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }

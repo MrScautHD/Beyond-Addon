@@ -1,6 +1,6 @@
 package com.mrscauthd.beyond_addon.events;
 
-import com.google.common.collect.ImmutableSet;
+import com.mojang.datafixers.util.Pair;
 import com.mrscauthd.beyond_addon.BeyondAddonMod;
 import com.mrscauthd.beyond_addon.world.PlanetsRegistry;
 import net.minecraft.resources.ResourceKey;
@@ -8,39 +8,44 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.mrscauthd.beyond_earth.events.Methods;
+import net.mrscauthd.beyond_earth.common.registries.LevelRegistry;
 
-import java.util.Set;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = BeyondAddonMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PlanetProperties {
 
-    public static Set<ResourceKey<Level>> worldsWithoutRain = Set.of(
+    public static List<ResourceKey<Level>> LEVELS_WITHOUT_RAIN = List.of(
             PlanetsRegistry.PLANET,
             PlanetsRegistry.ORBIT
     );
 
-    public static Set<ResourceKey<Level>> spaceWorldsWithoutOxygen = Set.of(
+    public static List<ResourceKey<Level>> LEVELS_WITHOUT_OXYGEN = List.of(
             PlanetsRegistry.PLANET,
             PlanetsRegistry.ORBIT
     );
 
-    public static Set<ResourceKey<Level>> spaceWorlds = Set.of(
+    public static List<ResourceKey<Level>> SPACE_LEVELS = List.of(
             PlanetsRegistry.PLANET,
             PlanetsRegistry.ORBIT
     );
 
-    public static Set<ResourceKey<Level>> orbitWorlds = Set.of(
+    public static List<Pair<ResourceKey<Level>, ResourceKey<Level>>> LEVELS_WITH_ORBIT = List.of(
+            new Pair<>(PlanetsRegistry.PLANET, PlanetsRegistry.ORBIT)
+    );
+
+    public static List<ResourceKey<Level>> ORBIT_LEVELS = List.of(
             PlanetsRegistry.ORBIT
     );
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Methods.worldsWithoutRain = new ImmutableSet.Builder<ResourceKey<Level>>().addAll(Methods.worldsWithoutRain).addAll(worldsWithoutRain).build();
-            Methods.spaceWorldsWithoutOxygen = new ImmutableSet.Builder<ResourceKey<Level>>().addAll(Methods.spaceWorldsWithoutOxygen).addAll(spaceWorldsWithoutOxygen).build();
-            Methods.spaceWorlds = new ImmutableSet.Builder<ResourceKey<Level>>().addAll(Methods.spaceWorlds).addAll(spaceWorlds).build();
-            Methods.orbitWorlds = new ImmutableSet.Builder<ResourceKey<Level>>().addAll(Methods.orbitWorlds).addAll(orbitWorlds).build();
+            LevelRegistry.LEVELS_WITHOUT_RAIN.addAll(LEVELS_WITHOUT_RAIN);
+            LevelRegistry.LEVELS_WITHOUT_OXYGEN.addAll(LEVELS_WITHOUT_OXYGEN);
+            LevelRegistry.SPACE_LEVELS.addAll(SPACE_LEVELS);
+            LevelRegistry.LEVELS_WITH_ORBIT.addAll(LEVELS_WITH_ORBIT);
+            LevelRegistry.ORBIT_LEVELS.addAll(ORBIT_LEVELS);
         });
     }
 }

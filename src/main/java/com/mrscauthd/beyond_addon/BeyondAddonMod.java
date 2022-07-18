@@ -1,7 +1,7 @@
 package com.mrscauthd.beyond_addon;
 
 import com.mojang.logging.LogUtils;
-import com.mrscauthd.beyond_addon.network.PlanetSelectionGuiNetworkHandler;
+import com.mrscauthd.beyond_addon.network.PlanetAddonSelectionMenuNetworkHandler;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,7 +30,7 @@ public class BeyondAddonMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         // NETWORK
-        BeyondAddonMod.addNetworkMessage(PlanetSelectionGuiNetworkHandler.class, PlanetSelectionGuiNetworkHandler::encode, PlanetSelectionGuiNetworkHandler::decode, PlanetSelectionGuiNetworkHandler::handle);
+        BeyondAddonMod.addNetworkMessage(PlanetAddonSelectionMenuNetworkHandler.class, PlanetAddonSelectionMenuNetworkHandler::encode, PlanetAddonSelectionMenuNetworkHandler::decode, PlanetAddonSelectionMenuNetworkHandler::handle);
     }
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
