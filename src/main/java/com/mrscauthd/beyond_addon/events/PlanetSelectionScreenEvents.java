@@ -2,6 +2,7 @@ package com.mrscauthd.beyond_addon.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrscauthd.beyond_addon.BeyondAddonMod;
+import com.mrscauthd.beyond_addon.network.PlanetAddonSelectionMenuNetworkHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,7 +16,6 @@ import net.mrscauthd.beyond_earth.client.screens.helper.ScreenHelper;
 import net.mrscauthd.beyond_earth.client.screens.planetselection.PlanetSelectionScreen;
 import net.mrscauthd.beyond_earth.client.screens.planetselection.helper.CategoryHelper;
 import net.mrscauthd.beyond_earth.client.screens.planetselection.helper.PlanetSelectionScreenHelper;
-import net.mrscauthd.beyond_earth.common.menus.planetselection.PlanetSelectionMenuNetworkHandler;
 
 import java.util.List;
 
@@ -146,8 +146,8 @@ public class PlanetSelectionScreenEvents {
     }
 
     /** GET NETWORK HANDLER */
-    public static PlanetSelectionMenuNetworkHandler getNetworkHandler(int handler) {
-        return new PlanetSelectionMenuNetworkHandler(handler);
+    public static PlanetAddonSelectionMenuNetworkHandler getNetworkHandler(int handler) {
+        return new PlanetAddonSelectionMenuNetworkHandler(handler);
     }
 
     /** CREATE A TRANSLATABLE KEY */
