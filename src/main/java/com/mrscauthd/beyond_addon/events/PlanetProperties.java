@@ -1,7 +1,7 @@
 package com.mrscauthd.beyond_addon.events;
 
 import com.mojang.datafixers.util.Pair;
-import com.mrscauthd.beyond_addon.BeyondAddonMod;
+import com.mrscauthd.beyond_addon.BeyondAddon;
 import com.mrscauthd.beyond_addon.world.PlanetsRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
@@ -12,7 +12,7 @@ import net.mrscauthd.beyond_earth.common.registries.LevelRegistry;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = BeyondAddonMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = BeyondAddon.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PlanetProperties {
 
     public static List<ResourceKey<Level>> LEVELS_WITHOUT_RAIN = List.of(

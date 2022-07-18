@@ -1,7 +1,8 @@
 package com.mrscauthd.beyond_addon.events;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mrscauthd.beyond_addon.BeyondAddonMod;
+import com.mrscauthd.beyond_addon.BeyondAddon;
+import com.mrscauthd.beyond_addon.network.NetworksAddonRegistry;
 import com.mrscauthd.beyond_addon.network.PlanetAddonSelectionMenuNetworkHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +20,7 @@ import net.mrscauthd.beyond_earth.client.screens.planetselection.helper.PlanetSe
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = BeyondAddonMod.MODID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = BeyondAddon.MODID, value = Dist.CLIENT)
 public class PlanetSelectionScreenEvents {
 
     /** TEXT */
@@ -39,7 +40,7 @@ public class PlanetSelectionScreenEvents {
     private static CategoryHelper category;
 
     /** TEXTURES */
-    public static final ResourceLocation PLANET_TEXTURE = new ResourceLocation(BeyondAddonMod.MODID, "textures/sky/planet.png");
+    public static final ResourceLocation PLANET_TEXTURE = new ResourceLocation(BeyondAddon.MODID, "textures/sky/planet.png");
 
     @SubscribeEvent
     public static void buttonVisibilityPre(PlanetSelectionScreenButtonVisibilityEvent.Pre event) {
@@ -133,15 +134,15 @@ public class PlanetSelectionScreenEvents {
         screen.visibleButton(planetCategoryButton, false);
 
         /** PLANET TELEPORT BUTTONS */
-        planetHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 10, 1, 70, 20, true, false, true, BeyondAddonMod.PACKET_HANDLER, getNetworkHandler(0), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.PLANET_TEXT.getString(), "3.721 m/s", "a" + screen.OXYGEN_TRUE_TEXT.getString(), "a" + "-20"), screen.BLUE_BUTTON_TEXTURE, screen.BLUE_LIGHT_BUTTON_TEXTURE, PLANET_BUTTON_TEXT);
+        planetHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 10, 1, 70, 20, true, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(0), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.PLANET_TEXT.getString(), "3.721 m/s", "a" + screen.OXYGEN_TRUE_TEXT.getString(), "a" + "-20"), screen.BLUE_BUTTON_TEXTURE, screen.BLUE_LIGHT_BUTTON_TEXTURE, PLANET_BUTTON_TEXT);
         screen.visibleButton(planetHandlerButton, false);
 
         /** PLANET ORBIT TELEPORT BUTTONS */
-        planetOrbitHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 84, 2, 37, 20, true, false, true, BeyondAddonMod.PACKET_HANDLER, getNetworkHandler(1), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.SMALL_BLUE_BUTTON_TEXTURE, screen.SMALL_BLUE_LIGHT_BUTTON_TEXTURE, screen.ORBIT_TEXT);
+        planetOrbitHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 84, 2, 37, 20, true, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(1), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.SMALL_BLUE_BUTTON_TEXTURE, screen.SMALL_BLUE_LIGHT_BUTTON_TEXTURE, screen.ORBIT_TEXT);
         screen.visibleButton(planetOrbitHandlerButton, false);
 
         /** PLANET SPACE STATION TELEPORT BUTTONS */
-        planetSpaceStationHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 125, 3, 75, 20, screen.spaceStationItemList, false, true, BeyondAddonMod.PACKET_HANDLER, getNetworkHandler(2), ModifiedButton.Types.PLANET_SPACE_STATION_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.LARGE_RED_BUTTON_TEXTURE, screen.LARGE_RED_LIGHT_BUTTON_TEXTURE, screen.SPACE_STATION_TEXT);
+        planetSpaceStationHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 125, 3, 75, 20, screen.spaceStationItemList, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(2), ModifiedButton.Types.PLANET_SPACE_STATION_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.LARGE_RED_BUTTON_TEXTURE, screen.LARGE_RED_LIGHT_BUTTON_TEXTURE, screen.SPACE_STATION_TEXT);
         screen.visibleButton(planetSpaceStationHandlerButton, false);
     }
 
@@ -152,6 +153,6 @@ public class PlanetSelectionScreenEvents {
 
     /** CREATE A TRANSLATABLE KEY */
     public static Component tl(String text) {
-        return Component.translatable("gui." + BeyondAddonMod.MODID + ".planet_selection." + text);
+        return Component.translatable("gui." + BeyondAddon.MODID + ".planet_selection." + text);
     }
 }

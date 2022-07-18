@@ -10,22 +10,14 @@ import net.mrscauthd.beyond_earth.common.util.Methods;
 import java.util.function.Supplier;
 
 public class PlanetAddonSelectionMenuNetworkHandler extends PlanetSelectionMenuNetworkHandlerHelper {
-    private int integer = 0;
+    public int integer;
 
     public PlanetAddonSelectionMenuNetworkHandler(int integer) {
-        this.setInteger(integer);
-    }
-
-    public int getInteger() {
-        return this.integer;
-    }
-
-    public void setInteger(int integer) {
         this.integer = integer;
     }
 
     public PlanetAddonSelectionMenuNetworkHandler(FriendlyByteBuf buffer) {
-        this.setInteger(buffer.readInt());
+        this.integer = buffer.readInt();
     }
 
     public static PlanetAddonSelectionMenuNetworkHandler decode(FriendlyByteBuf buffer) {
@@ -33,33 +25,34 @@ public class PlanetAddonSelectionMenuNetworkHandler extends PlanetSelectionMenuN
     }
 
     public static void encode(PlanetAddonSelectionMenuNetworkHandler message, FriendlyByteBuf buffer) {
-        buffer.writeInt(message.getInteger());
+        buffer.writeInt(message.integer);
     }
-
     public static void handle(PlanetAddonSelectionMenuNetworkHandler message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
-        ServerPlayer player = context.getSender();
 
-        switch (message.getInteger()) {
-            /** Teleport Planet Button */
-            case 0:
-                message.defaultOptions(player);
-                Methods.teleportTo(player, PlanetsRegistry.PLANET, 700);
-                break;
+        context.enqueueWork(() -> {
+            ServerPlayer player = context.getSender();
+            switch (message.integer) {
+                /** Teleport Planet Button */
+                case 0:
+                    message.defaultOptions(player);
+                    Methods.teleportTo(player, PlanetsRegistry.PLANET, 700);
+                    break;
 
-            /** Teleport Orbit Button */
-            case 1:
-                message.defaultOptions(player);
-                Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
-                break;
+                /** Teleport Orbit Button */
+                case 1:
+                    message.defaultOptions(player);
+                    Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
+                    break;
 
-            /** Teleport Space Station Button */
-            case 2:
-                message.defaultOptions(player);
-                message.deleteItems(player);
-                Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
-                break;
-        }
+                /** Teleport Space Station Button */
+                case 2:
+                    message.defaultOptions(player);
+                    message.deleteItems(player);
+                    Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
+                    break;
+            }
+        });
 
         context.setPacketHandled(true);
     }

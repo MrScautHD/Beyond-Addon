@@ -1,6 +1,6 @@
 package com.mrscauthd.beyond_addon.events;
 
-import com.mrscauthd.beyond_addon.BeyondAddonMod;
+import com.mrscauthd.beyond_addon.BeyondAddon;
 import com.mrscauthd.beyond_addon.world.PlanetsRegistry;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -14,7 +14,7 @@ import net.mrscauthd.beyond_earth.common.util.EntityGravity;
 import net.mrscauthd.beyond_earth.common.util.ItemGravity;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 
-@Mod.EventBusSubscriber(modid = BeyondAddonMod.MODID)
+@Mod.EventBusSubscriber(modid = BeyondAddon.MODID)
 public class ModEvents {
 
     @SubscribeEvent
