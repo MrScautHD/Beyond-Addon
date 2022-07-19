@@ -35,7 +35,7 @@ public class ModEvents {
 
         /** ITEM ENTITY GRAVITY SYSTEM */
         if (Methods.isLevel(level, PlanetsRegistry.PLANET)) {
-            ItemGravity.gravitySystem(entity, 0.05F);
+            ItemGravity.setGravity(entity, 0.05F);
         }
     }
 

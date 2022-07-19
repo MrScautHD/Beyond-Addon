@@ -112,7 +112,6 @@ public class PlanetSelectionScreenEvents {
 
         /** SOLAR SYSTEM BUTTON */
         solarSystemButton = PlanetSelectionScreenHelper.addCategoryButton(screen, category, 10, 1, 70, 20, 1, true, false, ModifiedButton.Types.MILKY_WAY_CATEGORY, List.of(SOLAR_SYSTEM_BUTTON_TEXT.getString()), screen.BLUE_BUTTON_TEXTURE, screen.BLUE_LIGHT_BUTTON_TEXTURE, SOLAR_SYSTEM_BUTTON_TEXT);
-        screen.visibleButton(solarSystemButton, false);
 
         /** BACK BUTTON */
         backButton = PlanetSelectionScreenHelper.addBackButton(screen, 10, 1, 70, 20, false, PlanetSelectionScreen.DARK_BLUE_BUTTON_TEXTURE, PlanetSelectionScreen.DARK_BLUE_LIGHT_BUTTON_TEXTURE, PlanetSelectionScreen.BACK_TEXT, (onPress) -> {
@@ -127,23 +126,18 @@ public class PlanetSelectionScreenEvents {
                 screen.updateButtonVisibility();
             }
         });
-        screen.visibleButton(backButton, false);
 
         /** PLANET BUTTONS */
         planetCategoryButton = PlanetSelectionScreenHelper.addCategoryButton(screen, category, 10, 1, 70, 20, 2, screen.checkTier(4), false, ModifiedButton.Types.SOLAR_SYSTEM_CATEGORY, List.of(PLANET_BUTTON_TEXT.getString(), screen.ROCKET_TIER_4_TEXT.getString()), screen.RED_BUTTON_TEXTURE, screen.RED_LIGHT_BUTTON_TEXTURE, PLANET_BUTTON_TEXT);
-        screen.visibleButton(planetCategoryButton, false);
 
         /** PLANET TELEPORT BUTTONS */
         planetHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 10, 1, 70, 20, true, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(0), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.PLANET_TEXT.getString(), "3.721 m/s", "a" + screen.OXYGEN_TRUE_TEXT.getString(), "a" + "-20"), screen.BLUE_BUTTON_TEXTURE, screen.BLUE_LIGHT_BUTTON_TEXTURE, PLANET_BUTTON_TEXT);
-        screen.visibleButton(planetHandlerButton, false);
 
         /** PLANET ORBIT TELEPORT BUTTONS */
         planetOrbitHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 84, 2, 37, 20, true, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(1), ModifiedButton.Types.PLANET_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.SMALL_BLUE_BUTTON_TEXTURE, screen.SMALL_BLUE_LIGHT_BUTTON_TEXTURE, screen.ORBIT_TEXT);
-        screen.visibleButton(planetOrbitHandlerButton, false);
 
         /** PLANET SPACE STATION TELEPORT BUTTONS */
         planetSpaceStationHandlerButton = PlanetSelectionScreenHelper.addHandlerButton(screen, 125, 3, 75, 20, screen.spaceStationItemList, false, true, NetworksAddonRegistry.PACKET_HANDLER, getNetworkHandler(2), ModifiedButton.Types.PLANET_SPACE_STATION_CATEGORY, List.of(screen.ORBIT_TEXT.getString(), screen.NO_GRAVITY_TEXT.getString(), "c" + screen.OXYGEN_FALSE_TEXT.getString(), "c" + "-270"), screen.LARGE_RED_BUTTON_TEXTURE, screen.LARGE_RED_LIGHT_BUTTON_TEXTURE, screen.SPACE_STATION_TEXT);
-        screen.visibleButton(planetSpaceStationHandlerButton, false);
     }
 
     /** GET NETWORK HANDLER */

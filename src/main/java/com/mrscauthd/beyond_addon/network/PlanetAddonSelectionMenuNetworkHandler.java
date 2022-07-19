@@ -36,20 +36,20 @@ public class PlanetAddonSelectionMenuNetworkHandler extends PlanetSelectionMenuN
                 /** Teleport Planet Button */
                 case 0:
                     message.defaultOptions(player);
-                    Methods.teleportTo(player, PlanetsRegistry.PLANET, 700);
+                    Methods.createLanderAndTeleportTo(player, PlanetsRegistry.PLANET, 700, false);
                     break;
 
                 /** Teleport Orbit Button */
                 case 1:
                     message.defaultOptions(player);
-                    Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
+                    Methods.createLanderAndTeleportTo(player, PlanetsRegistry.ORBIT, 700, false);
                     break;
 
                 /** Teleport Space Station Button */
                 case 2:
                     message.defaultOptions(player);
                     message.deleteItems(player);
-                    Methods.teleportTo(player, PlanetsRegistry.ORBIT, 700);
+                    Methods.createLanderAndTeleportTo(player, PlanetsRegistry.ORBIT, 700, true);
                     break;
             }
         });
